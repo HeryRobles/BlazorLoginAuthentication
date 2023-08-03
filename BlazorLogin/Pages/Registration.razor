@@ -1,8 +1,18 @@
 ﻿@page "/registro"
 @attribute [Authorize]
 @using Microsoft.AspNetCore.Authorization;
+@using Microsoft.AspNetCore.Components.Authorization
 
-<h1>Aquí va a ir un Login</h1>
+
+<AuthorizeView Roles="admin">
+    <Authorized>
+        <p>Estás autenticado, @context.User.Identity?.Name</p>
+        <h1>Aquí va a ir un Login</h1>
+    </Authorized>
+    <NotAuthorized>
+        <p>No estás autorizado para ver esto</p>
+    </NotAuthorized>
+</AuthorizeView>
 
 @code {
 
